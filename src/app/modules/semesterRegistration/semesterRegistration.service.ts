@@ -32,7 +32,7 @@ const createSemesterRegistrationIntoDB = async (
 
   if (isThereAnyUpcomingOrOngoingSEmester) {
     throw new AppError(
-      httpStatus.BAD_REQUEST,
+      400,
       `There is aready an ${isThereAnyUpcomingOrOngoingSEmester.status} registered semester !`,
     );
   }
@@ -42,7 +42,7 @@ const createSemesterRegistrationIntoDB = async (
 
   if (!isAcademicSemesterExists) {
     throw new AppError(
-      httpStatus.NOT_FOUND,
+      404,
       'This academic semester not found !',
     );
   }
@@ -54,7 +54,7 @@ const createSemesterRegistrationIntoDB = async (
 
   if (isSemesterRegistrationExists) {
     throw new AppError(
-      httpStatus.CONFLICT,
+      400,
       'This semester is already registered!',
     );
   }

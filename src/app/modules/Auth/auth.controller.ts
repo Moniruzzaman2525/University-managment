@@ -1,4 +1,4 @@
-import httpStatus from 'http-status';
+
 import config from '../../config';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
@@ -14,7 +14,7 @@ const loginUser = catchAsync(async (req, res) => {
   });
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: 200,
     success: true,
     message: 'User is logged in succesfully!',
     data: {
@@ -29,7 +29,7 @@ const changePassword = catchAsync(async (req, res) => {
 
   const result = await AuthServices.changePassword(req.user, passwordData);
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: 200,
     success: true,
     message: 'Password is updated succesfully!',
     data: result,
@@ -41,7 +41,7 @@ const refreshToken = catchAsync(async (req, res) => {
   const result = await AuthServices.refreshToken(refreshToken);
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: 200,
     success: true,
     message: 'Access token is retrieved succesfully!',
     data: result,
