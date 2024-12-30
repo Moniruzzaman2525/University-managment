@@ -1,4 +1,3 @@
-import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { AcademicSemesterServices } from './academicSemester.service';
@@ -9,7 +8,7 @@ const createAcademicSemester = catchAsync(async (req, res) => {
   );
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: 201,
     success: true,
     message: 'Academic semester is created succesfully',
     data: result,
@@ -20,7 +19,7 @@ const getAllAcademicSemesters = catchAsync(async (req, res) => {
   const result = await AcademicSemesterServices.getAllAcademicSemestersFromDB();
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: 200,
     success: true,
     message: 'Academic semesters are retrieved successfully',
     data: result,
@@ -33,7 +32,7 @@ const getSingleAcademicSemester = catchAsync(async (req, res) => {
     await AcademicSemesterServices.getSingleAcademicSemesterFromDB(semesterId);
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: 200,
     success: true,
     message: 'Academic semester is retrieved succesfully',
     data: result,
@@ -48,7 +47,7 @@ const updateAcademicSemester = catchAsync(async (req, res) => {
   );
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: 200,
     success: true,
     message: 'Academic semester is retrieved succesfully',
     data: result,

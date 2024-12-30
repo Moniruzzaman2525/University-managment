@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import httpStatus from 'http-status';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../config';
 import AppError from '../errors/AppError';
@@ -57,7 +56,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
 
     if (requiredRoles && !requiredRoles.includes(role)) {
       throw new AppError(
-        httpStatus.UNAUTHORIZED,
+        403,
         'You are not authorized  hi!',
       );
     }
