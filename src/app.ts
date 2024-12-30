@@ -4,10 +4,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express, { Application } from 'express';
+import express, { Application, Request, Response } from 'express';
 import globalErrorHandler from './app/middlewares/globalErrorhandler';
 import notFound from './app/middlewares/notFound';
 import router from './app/routes';
+import sendResponse from './app/utils/sendResponse';
 
 const app: Application = express();
 
@@ -24,7 +25,14 @@ app.use('/api/v1', router);
 //   res.send(a);
 // };
 
-// app.get('/', test);
+app.get('/', (req: Request, res: Response) => {
+    sendResponse(res, {
+        statusCode: 201,
+        success: true,
+        message: 'University Managment Server Running Successfully!',
+        data: [],
+      });
+});
 
 app.use(globalErrorHandler);
 
