@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import httpStatus from 'http-status';
 import mongoose from 'mongoose';
 import config from '../../config';
 import AppError from '../../errors/AppError';
@@ -50,7 +49,7 @@ const createStudentIntoDB = async (password: string, payload: TStudent) => {
 
     //create a student
     if (!newUser.length) {
-      throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create user');
+      throw new AppError(400, 'Failed to create user');
     }
     // set id , _id as user
     payload.id = newUser[0].id;
@@ -61,7 +60,7 @@ const createStudentIntoDB = async (password: string, payload: TStudent) => {
     const newStudent = await Student.create([payload], { session });
 
     if (!newStudent.length) {
-      throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create student');
+      throw new AppError(400, 'Failed to create student');
     }
 
     await session.commitTransaction();
@@ -106,7 +105,7 @@ const createFacultyIntoDB = async (password: string, payload: TFaculty) => {
 
     //create a faculty
     if (!newUser.length) {
-      throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create user');
+      throw new AppError(400, 'Failed to create user');
     }
     // set id , _id as user
     payload.id = newUser[0].id;
@@ -117,7 +116,7 @@ const createFacultyIntoDB = async (password: string, payload: TFaculty) => {
     const newFaculty = await Faculty.create([payload], { session });
 
     if (!newFaculty.length) {
-      throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create faculty');
+      throw new AppError(400, 'Failed to create faculty');
     }
 
     await session.commitTransaction();
@@ -153,7 +152,7 @@ const createAdminIntoDB = async (password: string, payload: TAdmin) => {
 
     //create a admin
     if (!newUser.length) {
-      throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create admin');
+      throw new AppError(400, 'Failed to create admin');
     }
     // set id , _id as user
     payload.id = newUser[0].id;
@@ -163,7 +162,7 @@ const createAdminIntoDB = async (password: string, payload: TAdmin) => {
     const newAdmin = await Admin.create([payload], { session });
 
     if (!newAdmin.length) {
-      throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create admin');
+      throw new AppError(400, 'Failed to create admin');
     }
 
     await session.commitTransaction();
